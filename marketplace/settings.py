@@ -23,11 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-wjlzh6976jb-^8^wmm!xw!sf3f7*yitwx#k$87+^03mb!dq=3v'
 
-STRIPE_PUB_KEY = 'pk_test_51KIAYWIlQkr0xXEJt7wDVHic2cadFMKCdVylChd8xF3bEF3WvI0iGfbFslhgI9hyt7jija6nNWiitHjTpbOUB8jn00szeDtAVP'
+STRIPE_PUB_KEY = ''
 
-STRIPE_SECRET_KEY = 'sk_test_51KIAYWIlQkr0xXEJJzAdI5dqDzEdYz87L1lL7qIQ4oNSpBUkCudp0ar74lnY745HOifVQMIIkNwE8vTlfcoTkCi7009XPQTQgm'
+STRIPE_SECRET_KEY = ''
 
-DEFAULT_EMAIL_FROM = "imerial-coder@hotmail.com"
+DEFAULT_EMAIL_FROM = "youremail@hotmail.com"
 # Application definition
 LOGIN_URL= 'login'
 LOGIN_REDIRECT_URL='vendor_admin'
@@ -46,8 +46,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = 'hotinhoo22@gmail.com'
-EMAIL_HOST_PASSWORD = "totaz123oor"
+EMAIL_HOST_USER = 'youremail@gmail.com'
+EMAIL_HOST_PASSWORD = "yourpassword"
 
 
 
