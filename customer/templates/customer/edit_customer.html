@@ -1,0 +1,26 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %}Update | {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+        
+    <form method="post" action=".">
+        {% csrf_token %}
+        <div class="form-header darken-4 text-center">
+            <h3><i class="fa fa-edit"></i> Update Information:</h3>
+        </div>
+        <br>
+        
+        {{ form|crispy }}
+       
+        <div class="text-center">
+            <button class="btn btn-deep-white">Save</button>
+        </div>
+    </form>
+</div>
+    <div class="col-sm"></div>
+{% endblock %}

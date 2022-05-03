@@ -1,0 +1,137 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Checkout | {% endblock %}
+
+{% block content %}
+
+              <form class="card-body" method="post" action="." id="payment-form">
+                {% csrf_token %}    
+
+                <!--Grid row-->
+                <div class="row">
+                   <div class="col-md-6 mb-2">
+                      <div class="md-form mb-5">
+                       <label for="first_name" class="">First Name : {{ customer.first_name }}</label>
+                      </div>
+                   </div>
+                   <!--Grid column-->
+                   <!--Grid column-->
+                   <div class="col-md-6 mb-2">
+                      <div class="md-form mb-5">
+                       <label for="last_name" class="">Last Name : {{ customer.last_name }}</label>
+                      </div>
+                   </div>
+                </div>
+                <!--Grid column-->
+                <!--Grid row-->
+                <!--email-->
+                <div class="row">
+                   <div class="col-md-6 mb-2">
+                      <div class="md-form mb-5">
+                     <!--    <input type="email" id="email" class="form-control" name="email" placeholder="email@example.com">
+                       -->  <label for="email" class="">Email : {{ customer.email }}</label>
+                      </div>
+                   </div>
+                   <div class="col-md-6 mb-2">
+                      <div class="md-form mb-5">
+                       <!--  <input type="text" id="phone" class="form-control" placeholder="05000000000" name="phone">
+                       -->  <label for="phone" class="">Phone :  {{ customer.telephone }}</label>
+                      </div>
+                   </div>
+                </div>
+                <!--address-->
+                <div class="md-form mb-5">
+                 <!--  <input type="text" id="address" name="address" class="form-control" placeholder="Sokak apt şehir ülke">
+                 -->  <label for="address" class="">Address : {{ customer.address }} </label>
+                </div>
+                <!--Grid row-->
+                <div class="row">
+                 <div class="col-md-6 mb-2">
+                    <div class="md-form mb-5">
+                      <label for="place"  class="">Location : {{ customer.state }} </label>
+                   </div>
+                 </div>
+                   <!--Grid column-->
+                   <!--Grid column-->
+                   <div class="col-md-6 mb-2">
+                    <div class="md-form mb-5">
+                      <label for="zipcode"  class="">Zip code: {{ customer.zip_code }} </label>
+                   </div>
+                 </div>
+                   <!--Grid column-->
+                </div>
+                <br> <!--Grid row-->
+          </div>
+          <div class="card">
+ 
+            <h1 class="my-5 h2 text-center">Details</h1> 
+ 
+            <p class="text-center">{{vat}}: VAT </p>  <br>
+           
+            <p class="text-center">{{price}} : Price</p>  <br>
+ 
+            <p class="text-center">{{amount_vat}} : Amount VAT </p>   <br>
+ 
+            <p class="text-center">{{final_price}} : Price Included VAT </p><br>
+        </div>
+        
+          <!--/.Card-->
+       </div>
+       <!--Grid column-->
+       <!--Grid column-->
+    </div>
+    <!--Grid row-->
+<br> 
+
+<h2 class="my-5 h2 text-center">Payment information</h2>
+
+       <div id="card-element" class="field">
+         <!-- A Stripe Element will be inserted here -->
+       </div>
+        <!-- Used to display form errors -->
+        <div id="card-errors"></div>
+
+  </div>
+   <br>
+   <div class="control float-right">
+       <button class="btn btn-primary btn-lg btn-block" type="submit">Payment</button>
+     </div>
+     {% endblock %}
+{% block scripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe('{{ stripe_pub_key }}');
+        var elements = stripe.elements();
+
+        var card = elements.create('card');
+
+        card.mount('#card-element');
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    stripeTokenHandler(result.token);
+                }
+            });
+        });
+
+        function stripeTokenHandler(token) {
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripe_token');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+
+            form.submit();
+        }
+    </script>
+
+{% endblock %}  

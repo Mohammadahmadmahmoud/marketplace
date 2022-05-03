@@ -1,0 +1,250 @@
+
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %} Vendor Admin| {% endblock %}
+
+{% block content %}
+            <div class="container wow fadeIn">
+        
+              <!--Grid row-->
+              <div class="row">
+                <div class="col">
+        
+                  <!-- Heading -->
+                  <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="my-5 h2 text-center">Vendor - {{ vendor.name }} </h2>
+                  </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div  class="col" >
+                  <!-- Cart -->
+                  
+                  <ul class="list-group mb-3 z-depth-1">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                      <div class="col">
+                        <h6 class="my-0">Balance:</h6>
+                      </div>
+                      <div class="col">
+                        {{ vendor.get_balance }} AED
+                      </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div class="col">
+                          <h6 class="my-0">Amount Paid:</h6>
+                        </div>
+                        <div class="col">
+                            {{ vendor.get_paid_amount }} AED
+                        </div>
+                      </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+                    
+        <div class="row">
+            <div class="col">
+               
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+        
+                                <a href="{% url 'edit_vendor' %}" class="btn btn-dark"style="color:gold">Edit</a>
+        
+                        </div>
+            </div>
+            <div class="col">
+                <div class="text-center">
+               <a href="{% url 'vendor_logout' %}" class="btn btn-dark"style="color:gold">Log out</a>
+                </div>
+
+            </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+        
+                  <!-- Heading -->
+                  <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="is-size-3 mb-4 text-center">The Products </h2>
+                  </h4>
+                </div>
+            </div>
+                <div class="float-right">
+                    <div class="text-center">
+                        <a href="{% url 'pdf' %}" class="btn btn-dark"style="color:gold">Print</a>
+                                           </div>
+                                       </div>
+                
+                    <div class="text-center">
+ <a href="{% url 'add_product' %}" class="btn btn-dark"style="color:gold">Add Product</a>
+                    </div>
+                </div>
+
+        
+    
+
+        
+        {% if products %}
+            <table class="table is-fullwidth thead-light">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Price vat included</th>
+                        <th>Product Price vat not included</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for product in products %}
+                    {% if LANGUAGE_CODE == 'ar' %}
+                    <tr>
+                        <td><a href="{% url 'product' product.category.slug product.id %}">{{ product.title }}</a></td>
+                        
+                        <td>{{ product.final_price }} AED </td>
+                        <td>{{ product.price }} AED </td>
+                        <td>
+                            <a href="{% url 'deleteProduct' product.id %}" class="btn btn-danger m-1"> Delete </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'updateProduct' product.id %}" class="btn btn-primary m-1"> Update </a>
+                        </td
+
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td><a href="{% url 'product' product.category.slug product.id %}">{{ product.title }}</a></td>
+                        
+                        <td>{{ product.final_price }} AED </td>
+                        <td>{{ product.price }} AED </td>
+                        <td>
+                            <a href="{% url 'deleteProduct' product.id %}" class="btn btn-danger m-1"> Delete </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'updateProduct' product.id %}" class="btn btn-primary m-1"> Update </a>
+                        </td
+
+                    </tr>{% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You do not have a product.</p>
+
+        {% endif %}
+
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+          <!-- Heading -->
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="is-size-3 mb-4 text-center">The Orders </h2>
+          </h4>
+        </div>
+    </div>
+    <div class="float-right">
+
+        <div class="text-center">
+<!---->
+        </div>
+    </div>
+
+    <br><hr>
+        {% if orders %}
+            {% for order in orders %}
+                <div class="{% if order.fully_paid %}has-background-success-light{% else %}has-background-info-light{% endif %} mb-2 p-4">
+                    <div class="columns is-multiline">
+                        <div class="column is-6">
+                            <h3 class="is-size-4">Order :-{{ order.id }} </h3>
+                        </div>
+    
+                        <div class="column is-12">
+                            <b>First name Last name</b> {{ order.customer.first_name }} {{ order.customer.last_name }}<br>
+                            <b>Address:</b> {{ order.customer.address }}<br>
+                            <b>Zip code and Location:</b> {{ order.customer.zip_code }} {{ order.customer.place }}<br>
+                            <b>E-mail:</b> {{ order.customer.email }}<br>
+                            <b>Phone:</b> {{ order.customer.telephone }}
+    
+                            <table class="table is-fullwidth mt-4 thead-light">
+                                <thead>
+                                    <tr>
+                                        <th>Product name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Paid</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    {% for item in order.items.all %}
+                                        {% if item.vendor == request.user.vendor %}
+                                            <tr>
+                                                <td>{{ item.product.title }}</td>
+                                                <td>{{ item.product.price }} $ </td>
+                                                <td>{{ item.quantity }}</td>
+                                                <td>{{ item.vendor_paid|yesno:"Yes,No" }}</td>
+                                                <td>{{ item.get_total_price }} $</td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %} 
+<br>
+<hr>
+<div class="row">
+    <div class="col">
+
+      <!-- Heading -->
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="is-size-3 mb-4 text-center">The Ads </h2>
+      </h4>
+    </div>
+</div>
+        {% if ads_order %}
+            <table class="table is-fullwidth thead-light">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in ads_order %}
+                    <tr>
+                        <td><a href="{% url 'ads' item.category.slug item.id %}">{{ item.title }}</a></td>
+                        <td>{{ item.description }}  </td>
+                        <td>
+                            <a href="{% url 'delete_vendor_ads' item.id %}" class="btn btn-danger m-1"> Delete </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'update_vendor_ads' item.id %}" class="btn btn-primary m-1"> Update </a>
+                        </td
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You do not have a product.</p>
+
+        {% endif %}
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

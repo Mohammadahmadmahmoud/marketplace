@@ -1,0 +1,38 @@
+
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %} Add Product | {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+    <form method="POST" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-header darken-4 text-center">
+            <h3><i class="fa fa-edit"></i> Add Product:</h3>
+
+        </div>
+        
+        {{ form|crispy }}
+        <div class="text-center">
+            <button class="btn btn-deep-white">Add</button>
+        </div>
+    </form>
+</div>
+<hr>
+<h2 class="subtitle">Images</h2>
+
+<form method="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ image_form.as_p }}
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-dark is-uppercase">Add image</button>
+        </div>
+    </div>
+</form>
+ 
+{% endblock %}

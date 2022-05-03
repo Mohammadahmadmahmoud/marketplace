@@ -1,0 +1,206 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Package | {% endblock %}
+
+{% block content %}
+<form id="confirm-sticky-post" action="/ar/post/confirm-sticky/mmaskfzkxv-9517720/add" method="post">    <section class="d-flex justify-content-lg-center flex-wrap mt-4"style="justify-content:space around">
+   
+    <div class="card">
+        <div class="d-flex justify-content-center">
+            <div class="post-type-box paid">
+                <div class="box-header paid"></div>
+
+                <label class="post-type-title paid font-weight-bold font-size-1o25 text-center mt-3 w-100">
+                    إعلان مثبت                    </label>
+
+                <div class="text-center"> 
+                    <td> Golden Package </td> <br>
+ 
+                    <div class="col-12"> {% if request.user.customer%}
+                        <div class="d-flex justify-content-center">
+             
+                <td>100.00 AED </td>
+          <a href="{% url 'gold_ads_checkout' %}">          Choose     Gold   </a>   </div>{%endif%}
+                </div>
+
+                <div class="col-12"> {% if request.user.customer%}
+                    <div class="d-flex justify-content-center">
+                        <td>5.00 AED </td>
+
+          <a href="{% url 'ads_checkout' %}">          Choose    Normal    </a>    </div>{% endif %}
+                </div>
+                 
+                <div class="col-12"> {% if request.user.customer%}
+                    <div class="d-flex justify-content-center">
+                        <td>50.00 AED </td>
+          <a href="{% url 'silver_ads_checkout' %}">          Choose    Silver    </a>    </div>{% endif %}
+                </div>
+ 
+                <div class="col-12"> {% if request.user.vendor %}
+                    <div class="d-flex justify-content-center">
+          <a href="{% url 'ads_checkout' %}">          Choose   Normal     </a>    </div>{% endif %}
+                </div>
+                <div class="col-12"> {% if request.user.vendor %}
+                    <div class="d-flex justify-content-center">
+                        <td>100.00 AED </td>
+          <a href="{% url 'gold_ads_checkout' %}">          Choose Gold</a></div>{% endif %}
+                </div>
+                <div class="col-12"> {% if request.user.vendor %}
+                    <div class="d-flex justify-content-center">
+                        <td>50.00 AED </td>
+          <a href="{% url 'silver_ads_checkout' %}">          Choose   Silver     </a></div>{% endif %}
+                </div>
+
+
+                </div>
+
+
+                <div class="mt-5">
+
+                    <div class="d-flex paid-into">
+                        <div class="col-1">
+                            <i class="fa fa-check color-waseet-yellow" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-11">
+                            <label class="color-dark-gray font-size-o875">
+                                اتصالات ومشاهدات اكثر بـ 50 ضعف عن المجاني                                </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex paid-into">
+                        <div class="col-1">
+                            <i class="fa fa-check color-waseet-yellow" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-11">
+                            <label class="color-dark-gray font-size-o875">
+                                مُثبت في أعلى قائمة الإعلانات.                                </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex paid-into">
+                        <div class="col-1">
+                            <i class="fa fa-check color-waseet-yellow" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-11">
+                            <label class="color-dark-gray font-size-o875">
+                                أولوية الظهور أولاً في نتائج البحث.                                </label>
+                        </div>
+                    </div>
+
+                </div>
+                
+               
+
+  
+             
+           
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="d-flex justify-content-center">
+            <div class="post-type-box paid">
+                <div class="box-header paid"></div>
+                <label class="post-type-title free-title free font-weight-bold font-size-1o25 text-center mt-3 w-100">
+                    إعلان مجاني                    </label>
+           
+                <label class="post-type-title paid font-weight-bold font-size-1o25 text-center mt-3 w-100">
+                    إعلان مثبت                    </label>
+
+                <div class="text-center"> 
+ 
+               
+                </div>
+
+                <div class="mt-5">
+
+                    <div class="d-flex paid-into">
+                        <div class="col-1">
+                            <i class="fa fa-check color-waseet-yellow" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-11">
+                            <label class="color-dark-gray font-size-o875">
+                                limitted connections and short show   </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex paid-into">
+                        <div class="col-1">
+                            <i class="fa fa-check color-waseet-yellow" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-11">
+                            <label class="color-dark-gray font-size-o875">
+                             just show with date of with others                                </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex paid-into">
+                        <div class="col-1">
+                            <i class="fa fa-check color-waseet-yellow" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-11">
+                            <label class="color-dark-gray font-size-o875">
+                                أولوية الظهور أولاً في نتائج البحث.                                </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-12">
+                    <div class="col-12"> {% if request.user.customer %}
+                        <div class="d-flex justify-content-center">
+              <a href="{% url 'ads_page' %}">          Choose Free </a></div>{% endif %}
+                    </div>
+                  <div class="col-12"> {% if request.user.vendor %}
+                        <div class="d-flex justify-content-center">
+              <a href="{% url 'ads_page' %}">          Choose Free</a></div>{% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+
+</section>
+</form>
+
+{% endblock %}
+{% block scripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe('{{ stripe_pub_key }}');
+        var elements = stripe.elements();
+
+        var card = elements.create('card');
+
+        card.mount('#card-element');
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    stripeTokenHandler(result.token);
+                }
+            });
+        });
+
+        function stripeTokenHandler(token) {
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripe_token');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+
+            form.submit();
+        }
+    </script>
+
+{% endblock %}

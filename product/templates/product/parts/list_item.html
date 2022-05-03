@@ -1,0 +1,36 @@
+
+<!--Card-->
+    <div class="card">
+ 
+
+        <div class="view overlay">
+            
+            <img src="{{ product.get_thumbnail }}" class=" mx-auto w-100 " style="height: 300px; width: 300px;"alt="">
+            
+            <a href="{% url 'product' product.category.slug product.id %}">
+            <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+        <!--Card image-->
+
+        <!--Card content-->
+        <div class="card-body text-center">
+            <!--Category & Title-->
+            <a href="{% url 'category' product.category.slug %}" class="grey-text">
+            <h5>{{ product.category}}</h5>
+            </a>
+            <h5>
+                {%if request.user.customer%}
+            <strong>
+                <a href="{% url 'product' product.category.slug product.id %}" class="dark-grey-text">{{ product.title }}</a>
+            </strong>{% endif%}
+            </h5>
+
+            <h4 class="font-weight-bold black-text">
+            <strong>{{ product.price }} AED</strong>
+            </h4>
+
+        </div>      <!--Card content-->
+   
+    </div>
+    <!--Card-->

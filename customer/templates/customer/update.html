@@ -1,0 +1,27 @@
+
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %}  Update My Ad | {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+    <form method="POST" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-header darken-4 text-center">
+            <h3><i class="fa fa-edit"></i> Add Product:</h3>
+<!--            <p style="color :gold;text-shadow:0em;background-color:black; border-radius: 5px;"> Already Add VAT ? Just Please! Ignore The Link Below </p><br>-->
+<!--            <p style="color :gold;text-shadow:0em;background-color:black; border-radius: 5px;">-->
+<!--            <a href="https://vatcalconline.com/" style = "color: white;"> Calculate UAE VAT <strong style="color:gold"> 5% </strong> Before Adding Your Product Then Copy & Paste <strong style="color:gold">(Gross amount)</strong> </a> -->
+<!--        </p>-->
+        </div>
+        
+        {{ form|crispy }}
+        <div class="text-center">
+            <button class="btn btn-deep-white">Add</button>
+        </div>
+    </form>
+</div>
+<div class="col-sm"></div>
+{% endblock %}

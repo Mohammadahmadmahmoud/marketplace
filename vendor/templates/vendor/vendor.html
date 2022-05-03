@@ -1,0 +1,21 @@
+
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %} {{ vendor.name }} | {% endblock %}
+
+{% block content %}
+<section class="text-center mb-4">
+<h2 class="is-size-3">{{ vendor.name }}</h2>
+<hr>
+<br>
+<div class="row wow fadeIn">
+    {% for product in vendor.products.all %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        {% include 'product/parts/list_item.html' %}
+    </div>
+    {% endfor %}
+</div> 
+</div> 
+</section>
+
+{% endblock %}

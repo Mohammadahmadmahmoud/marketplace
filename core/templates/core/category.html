@@ -1,0 +1,21 @@
+
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %} {{ category.title }} | {% endblock %}
+
+{% block content %}
+<section class="text-center mb-4">
+<h2 class="is-size-3">{{ category.title }}</h2>
+<hr>
+<br>
+<div class="row wow fadeIn">
+    {% for ads in category.ads.all %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        {% include 'core/pads_page.html' %}
+    </div>
+    {% endfor %}
+</div> 
+</div> 
+</section>
+
+{% endblock %}

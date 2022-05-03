@@ -1,0 +1,57 @@
+
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %} Welcome | {% endblock %}
+
+{% block content %}
+<section class="text-center mb-4">
+<br>
+<h3 class="black-text" >New Ads</h3>
+<hr>
+<br>
+<div class="row wow fadeIn">
+        
+    {% for ads in newest_ads %}
+    <div class="col-lg-4 col-md-6 mb-4">
+    
+<!--Card-->
+<div class="card">
+
+    <!--Card image-->
+    <div class="view overlay">
+        {% if LANGUAGE_CODE == 'ar' %}
+        <td><a href = "{{ads.url}}">{{ads.url}}</a></td>
+        <img src="{{ ads.get_thumbnailOne }}" class=" mx-auto w-100 " style="height: 100px; width: 300px;"alt="">
+        <img src="{{ ads.get_thumbnailTow}}" class=" mx-auto w-100 " style="height: 100px; width: 300px;"alt="">
+        <img src="{{ ads.get_thumbnailThree }}" class=" mx-auto w-100 " style="height: 100px; width: 300px;"alt="">
+        {{ ads.descriptionar}}
+    </div>
+    {%else%}
+    <td><a href = "{{ads.url}}">{{ads.url}}</a></td>
+    <img src="{{ ads.get_thumbnailOne }}" class=" mx-auto w-100 " style="height: 100px; width: 300px;"alt="">
+    <img src="{{ ads.get_thumbnailTow}}" class=" mx-auto w-100 " style="height: 100px; width: 300px;"alt="">
+    <img src="{{ ads.get_thumbnailThree }}" class=" mx-auto w-100 " style="height: 100px; width: 300px;"alt="">
+    {{ ads.description}}
+</div>
+    {% endif %}
+     
+    <!--Card image-->
+
+    <!--Card content-->
+    <div class="card-body text-center">
+        <!--Category & Title-->
+        
+        
+
+    </div>
+    <!--Card content-->
+
+</div>
+<!--Card-->
+
+    </div>
+    {% endfor %}   
+</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %}Edit| {% endblock %}
+
+{% block content %}
+{% comment %} <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+    <form method="post" action=".">
+        {% csrf_token %}
+        <div class="form-header darken-4 text-center">
+            <h3><i class="fa fa-edit"></i>Edit Vendor:</h3>
+        </div>
+        <div class="md-form">
+            <i class="fa fa-edit prefix"></i>
+            <input type="text" class="form-control" value="{{ vendor.name }}" name="name" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_name">
+            <label for="form2">Username</label>
+            <p class="form-text text-muted">Username must be the same!</p>
+        </div>
+        <div class="md-form">
+            <i class="fa fa-envelope prefix"></i>
+            <input type="email" class="form-control" value="{{ vendor.created_by.email }}" name="email" autofocus="" autocapitalize="none" autocomplete="email" maxlength="150" required="" id="id_email">
+            <label for="form2">Email</label>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-deep-white">Save</button>
+        </div>
+    </form>
+</div>
+    <div class="col-sm"></div>
+
+ {% endcomment %}
+
+
+
+
+
+    {% comment %} < {% endcomment %}
+
+
+
+
+
+
+
+
+
+    {% load crispy_forms_tags %} 
+ 
+<div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+        
+    <form method="post" action=".">
+        {% csrf_token %}
+        <div class="form-header darken-4 text-center">
+            <h3><i class="fa fa-edit"></i> Update Information:</h3>
+        </div>
+        <br>
+        
+        {{ form|crispy }}
+       
+        <div class="text-center">
+            <button class="btn btn-deep-white">Save</button>
+        </div>
+    </form>
+</div>
+    <div class="col-sm"></div>
+ 
+
+{% endblock %}

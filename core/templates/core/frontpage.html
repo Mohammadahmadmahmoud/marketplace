@@ -1,0 +1,39 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Welcome | {% endblock %}
+
+{% block content %}
+<section class="text-center mb-4">
+<br>
+<h3 class="black-text" >New Products</h3>
+<hr>
+<br>
+<div class="row wow fadeIn">
+        
+    {% for product in newest_products %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        {% include 'product/parts/list_item.html' %}
+    </div>
+    {% endfor %}   
+</div>
+<hr><br>
+
+{% if prod.has_previous %}
+
+    <a href="?page=1">&laquo First</a>
+    <a href="?page={{prod.has_previous_page_number}}">Previous</a>
+
+{% endif%}
+
+Page {{prod.number}}.of {{prod.paginator.num_pages}}
+
+{% if prod.has_next %}
+
+<a href = "?page={{prod.next_page_number}}">next</a>
+<a href = "?page={{prod.paginator.num_pages}}}">Last &raquo </a>
+
+{% endif%}
+</section>
+
+{% endblock %}

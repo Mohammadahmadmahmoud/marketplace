@@ -1,0 +1,103 @@
+
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% block title %} Vendor Admin| {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+
+      <!-- Heading -->
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="is-size-3 mb-4 text-center">Orders </h2>
+      </h4>
+    </div>
+</div>
+        {% if orders %}
+        {% for order in orders %}
+            <div class="{% if order.fully_paid %}has-background-success-light{% else %}has-background-info-light{% endif %} mb-2 p-4">
+                <div class="columns is-multiline">
+                    <div class="column is-6">
+                        <h3 class="is-size-4"> Order #{{ order.id }} </h3>
+                    </div>
+
+                    <div class="column is-12">
+                        <b>First name Last name</b> {{ order.customer.first_name }} {{ order.customer.last_name }}<br>
+                        <b>Address:</b> {{ order.customer.address }}<br>
+                        <b>Zip code and Location:</b> {{ order.customer.zip_code }} {{ order.customer.place }}<br>
+                        <b>E-mail:</b> {{ order.customer.email }}<br>
+                        <b>Phone:</b> {{ order.customer.telephone }}
+
+                        <table class="table is-fullwidth mt-4 thead-light">
+                            <thead>
+                                <tr>
+                                    <th>Product name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Paid</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in order.items.all %}
+                                    {% if item.vendor == request.user.vendor %}
+                                        <tr>
+                                            <td>{{ item.product.title }}</td>
+                                            <td>{{ item.product.price }} $ </td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.vendor_paid|yesno:"Yes,No" }}</td>
+                                            <td>{{ item.get_total_price }} $</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+ 
+    {% if orders %}
+{% for item in orders%}
+                    <div class="column is-12">
+                        <b>First name Last name</b> {{ order.customer.first_name }} {{ order.customer.last_name }}<br>
+                        <b>Address:</b> {{ order.customer.address }}<br>
+                        <b>Zip code and Location:</b> {{ order.customer.zip_code }} {{ order.customer.place }}<br>
+                        <b>E-mail:</b> {{ order.customer.email }}<br>
+                        <b>Phone:</b> {{ order.customer.telephone }}
+
+                        <table class="table is-fullwidth mt-4 thead-light">
+                            <thead>
+                                <tr>
+                                    <th>Product name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Paid</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in order.items.all %}
+                                    {% if item.vendor == request.user.vendor %}
+                                        <tr>
+                                            <td>{{ item.product.title }}</td>
+                                            <td>{{ item.product.price }} $ </td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.vendor_paid|yesno:"Yes,No" }}</td>
+                                            <td>{{ item.get_total_price }} $</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% endblock %}

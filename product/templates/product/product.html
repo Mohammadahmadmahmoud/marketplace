@@ -1,0 +1,118 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} {{ product.title}} | {% endblock %}
+
+{% block content %}
+<!--Main layout-->
+
+    <div class="container dark-grey-text ">
+    <div class="row d-flex justify-content-center wow fadeIn">
+       <!--Grid column-->
+       <div class="col-md-6 text-center">
+         <h4 class="my-4 h4">{{ product.title }}</h4>
+      </div>
+   </div>
+   <!--Grid row-->
+   <div class="row wow fadeIn">
+      {% if product.image %}
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+         <img src="{{ product.image.url }}" class="img-fluid" alt="">
+      </div>
+      <!--Grid column-->
+      {% endif %}
+       
+       <!--Grid column-->
+       <div class="col-md-6 mb-4 ">
+          <!--Content-->
+          <div class="p-4">
+        
+             <div class="mb-3 d-flex justify-content-center">
+               <a href="{% url 'category' product.category.slug %}">
+               <span class="badge purple mr-1">{{ product.categoryar }}</span>
+               </a>
+               <a href="{% url 'vendor' product.vendor.created_by.id %}">
+               <span class="badge blue mr-1">Vendor: {{ product.vendor.name }}</span>
+               </a>
+            </div>
+          
+             <br>
+              <div class="float-right">
+
+        <!-- <div class="text-center">
+            <button class="btn btn-deep-white"><a href="{{ product.pdf_file.url }}"  class="button is-dark is-uppercase mb-6">Kitap PDF</a></button>
+        </div> -->
+    </div>
+             <div class="p-4">
+                <div class="mb-3 d-flex justify-content-center">
+                   <p class="lead font-weight-bold"><span>{{ product.final_price }} AED </span></p>
+                </div>
+                  <!-- Then put toasts within -->
+
+
+                  {%if request.user.customer%}
+                   <form method="POST" action="." class="d-flex justify-content-center">
+                      {% csrf_token %}
+                      <input type="number" name="quantity"  class="input" min="1" value="1" aria-label="Search" style="width: 100px">
+                      <button class="btn btn-primary btn-md my-0 p" type="submit">Add cart
+                      <i class="fas fa-shopping-cart ml-1"></i>
+                      </button>
+                     </form>
+                     {% else%}
+                     <form method="POST" action="." class="d-flex justify-content-center">
+                        {% csrf_token %}
+                        <input type="number" name="quantity"  class="input" min="1" value="1" aria-label="Search" style="width: 100px">
+                        <button class="btn btn-primary btn-md my-0 p" type="submit">Add cart
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                        </button>
+                       </form>
+                       {%endif%}
+
+                     {% if messages %}
+                     {% for message in messages %}
+                        <hr>
+                        <div class="notification is-success is-toast text-center">{{ message }}</div>
+                        <hr>
+                     {% endfor %}
+                     {% endif %}
+                </div>
+             </div>
+             </form>
+             <br>
+          </div>
+          <!--Content-->
+       </div>
+       <!--Grid column-->
+    </div>
+    <h4 class="my-4 h4">{{ product.title }} Description</h4>
+    <br>
+    <p>{{ product.description }}</p>
+    <!-- Flexbox container for aligning the toasts -->
+
+    <!--Grid row-->
+    {% if similar_products %}
+    <hr>
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center wow fadeIn">
+       <!--Grid column-->
+       <div class="col-md-6 text-center">
+          <h4 class="my-4 h4">Similar Products</h4>
+       </div>
+       <!--Grid column-->
+    </div>
+    <!--Grid row-->
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+       {% for product in similar_products %}
+       <div class="col-lg-4 col-md-6 mb-4">
+          {% include 'product/parts/list_item.html' %}
+       </div>
+       {% endfor %}   
+    </div>
+    {% endif %}
+
+ <!--Main layout-->
+
+
+{% endblock %}

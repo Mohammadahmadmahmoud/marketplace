@@ -1,0 +1,64 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Customer Login | {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+        <div class="text-center">
+            {% if form.errors %}
+                <p>Username or password is wrong</p>
+            {% endif %}
+
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div  class="alert alert-sm alert-message"style="color:red">
+                    {% if message.tags %}
+                    {{ message.tags }}
+                    {% endif %}
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+ 
+    <form method="POST" action=".">
+        {% csrf_token %}
+        
+                <!--Header-->
+                <div class="form-header darken-4 text-center">
+                    <h3><i class="fa fa-lock"></i> Log in:</h3>
+                </div>
+        
+                <!--Body-->
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input type="text" class="form-control" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+                    <label for="form2">Username</label>
+                </div>
+        
+                <div class="md-form">
+                    <i class="fa fa-lock prefix"></i>
+                    <input type="password" class="form-control" name="password" autocomplete="current-password" required="" id="id_password">
+                    <label for="form4">Password</label>
+                </div>
+        
+        <div class="text-center">
+            <button class="btn btn-deep-white">Log in</button>
+        </div>
+
+
+</form>
+</div>
+<div class="col-sm">
+     
+    <a href="{% url 'password_reset' %}"> Forgot password</a>
+     
+
+</div>
+
+{% endblock %}
