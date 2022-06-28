@@ -54,7 +54,7 @@ EMAIL_HOST_PASSWORD = "yourpassword"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
