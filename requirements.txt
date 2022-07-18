@@ -24,4 +24,5 @@ tzdata==2022.1
 urllib3==1.26.9
 weasyprint==55.0
 webencodings==0.5.1
+whitenoise==6.2.0
 zopfli==0.2.1
